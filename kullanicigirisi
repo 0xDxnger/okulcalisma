@@ -1,0 +1,57 @@
+package com.example.giris;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+import org.w3c.dom.Text;
+
+public class MainActivity extends AppCompatActivity {
+
+    EditText textad;
+    EditText textsifre;
+    TextView textView;
+    Button giris;
+
+    final String kullaniciadi="Alper";
+    final String kullanicisifre="123";
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+        textad=findViewById(R.id.txtAd);
+        textsifre=findViewById(R.id.txtSifre);
+        textView=findViewById(R.id.viewGiris);
+        giris=findViewById(R.id.btnGiris);
+    }
+    public void kontrol(View view)
+    {
+        String ad = textad.getText().toString();
+        String sifre = textsifre.getText().toString();
+
+        if (kullaniciadi.equals(ad) && kullanicisifre.equals(sifre)) {
+            Toast.makeText(this, "Giriş başarılı!", Toast.LENGTH_SHORT).show();
+            textView.setText("Giriş başarılı!");
+        }
+        else {
+            Toast.makeText(this, "Giriş başarısız!", Toast.LENGTH_SHORT).show();
+            textView.setText("Giriş başarısız!");
+        }
+    }
+}
