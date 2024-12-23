@@ -1,0 +1,74 @@
+package com.example.hesapmakinesi2;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+public class MainActivity extends AppCompatActivity {
+    EditText sayi1;
+    EditText sayi2;
+    TextView txtsonuc1;
+    Button toplama1;
+    Button cikarma1;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+        sayi1=findViewById(R.id.edttxtnum1);
+        sayi2=findViewById(R.id.edttxtnum2);
+        toplama1=findViewById(R.id.toplama);
+        cikarma1=findViewById(R.id.cikarma);
+        txtsonuc1=findViewById(R.id.txtsonuc);
+    }
+    public void topla(View view)
+    {
+        int s1Value=Integer.parseInt(sayi1.getText().toString());
+        int s2Value=Integer.parseInt(sayi2.getText().toString());
+        int son1 = s1Value + s2Value;
+        txtsonuc1.setText(String.valueOf("Sonuç:"+son1));
+    }
+    public void cikar(View view)
+    {
+        int s1Value=Integer.parseInt(sayi1.getText().toString());
+        int s2Value=Integer.parseInt(sayi2.getText().toString());
+        int son2 = s1Value - s2Value;
+        txtsonuc1.setText(String.valueOf("Sonuç:"+son2));
+    }
+    public void fonkalma(View view)
+    {
+        int s1Value=Integer.parseInt(sayi1.getText().toString());
+        int sonuc12 = 1;
+        for (int i = 1;i<=s1Value;i++)
+        {
+            sonuc12 = i;
+        }
+        txtsonuc1.setText(String.valueOf("Sonuç:"+sonuc12));
+    }
+    public void ussu(View view)
+    {
+        int s1=Integer.parseInt(sayi1.getText().toString());
+        int s2=Integer.parseInt(sayi2.getText().toString());
+        int sonuc12 = 1;
+        for (int i = 1; i <= s1; i++) {
+            sonuc12= s2;
+            txtsonuc1.setText(String.valueOf("Sonuç="+sonuc12));
+        }
+    }
+
+
+}
